@@ -26,7 +26,7 @@ impl Foo {
         }
     }
 
-    pub fn with_bar(mut self, bar: String) -> FooBuilder {
+    pub fn with_bar(mut self, bar: String) -> Foo {
         self.bar = Some(bar);
         self
     }
