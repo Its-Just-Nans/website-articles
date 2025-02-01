@@ -178,9 +178,9 @@ n4n5.lastname.		604800	IN	A	185.199.108.153
 
 Now, we can test with our browser or with `curl` to see if our DNS server is working.
 
-On our browser, we simply need to type `n4n5.lastname/` (the slash is mandatory to force the user to accept this url, since this extension does not exist) and we should see our website.
+On our browser, we simply need to type `n4n5.lastname/` (the slash is mandatory to force the browser to accept this url - since this extension does not exist) and we should see our website.
 
-But that's not the case! First of all, we see that the website is not secure, this is because the certificate is not valid for this domain. We can ignore this warning (see last paragraph) and continue to the website.
+But that's not the case! First of all, we see that the website is not secure, it's related to the certificate not being valid for this domain. We can ignore this warning (see last paragraph) and continue to the website.
 
 And that's still not the case! A Github 404 page is displayed!
 
@@ -252,8 +252,8 @@ See also:
 
 - https://bind9.readthedocs.io/ - bind9 documentation
 - https://cr.yp.to/djbdns.html - djbdns
+- https://letsencrypt.org/how-it-works/ - how certificates works
 - Don't forget to remove the `nameserver` from `/etc/resolv.conf`
-
 
 Definitions:
 
