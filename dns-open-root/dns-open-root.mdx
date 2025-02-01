@@ -182,7 +182,7 @@ On our browser, we simply need to type `n4n5.lastname/` (the slash is mandatory 
 
 But that's not the case! First of all, we see that the website is not secure, this is because the certificate is not valid for this domain. We can ignore this warning (see last paragraph) and continue to the website.
 
-And that's still not the case! A github 404 page is displayed!
+And that's still not the case! A Github 404 page is displayed!
 
 This is because github as only a few addresses for many websites! To know which request is for which website, it checks the `Host` header!
 
@@ -198,7 +198,7 @@ This is because github as only a few addresses for many websites! To know which 
 
 </CommandLine>
 
-We got 404 we got an error! But now we know why! We need to add the `Host` header to our request!
+We got 404! But now we know why! We need to add the `Host` header to our request!
 
 <CommandLine command="curl -H 'Host: n4n5.dev' n4n5.lastname" open>
 
