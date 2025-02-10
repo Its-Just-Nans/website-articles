@@ -74,6 +74,37 @@ jadx-gui # open the APK inside
 
 ## Get signatures of the APK
 
-```bash
+```sh
 apksigner verify --print-certs example.apk
+```
+
+## Android keystore and `keytool`
+
+The keystore is often a PKCS12 keystore type
+
+```sh
+# list the keys
+keytool -keystore ~/path/to/keystore -list
+
+# export the certificate
+keytool -keystore ~/path/to/keystore -exportcert -alias key_alias -file exported_certificate.der
+
+# convert JKS to PKCS12
+keytool \
+    -importkeystore \
+    -srckeystore ~/path/to/keystore \
+    -destkeystore PRIVATE_KEYSTORE.p12 \
+    -srcstoretype JKS \
+    -deststoretype PKCS12 \
+    -srcstorepass $STORE \
+    -deststorepass key_out \
+    -srcalias key_alias \
+    -destalias key_alias \
+    -srckeypass $KEY \
+    -destkeypass key_out \
+    -noprompt
+
+# export private key
+openssl pkcs12 -in PRIVATE_KEYSTORE.p12 -nodes -nocerts -out private.key
+# check the private.key file
 ```
