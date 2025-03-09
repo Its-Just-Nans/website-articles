@@ -1,0 +1,434 @@
+---
+title: Electricity
+date: 2025-02-25
+description: Electricity basics
+draft: true
+toc: true
+---
+
+export const Style = () => {
+  return (
+    <style>
+      {`
+      .details-bordered {
+        border-left: 1px solid;
+        padding: 10px;
+        border-top: 1px solid;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      .details-bordered summary *{
+        margin: 0;
+      }
+      `}
+    </style>
+  )
+}
+
+<Style />
+
+import { Image } from 'astro:assets'
+
+# Introduction
+
+## **Electricity**
+
+Electricity is the set of physical phenomena associated with the presence and flow of electric charge. It is a form of energy that comes in positive and negative forms, that occur naturally (as in lightning), or is produced (as in a generator).
+
+## **Electric Circuit**
+
+An electric circuit is a closed path in which electrons from a voltage or current source flow. The electrons flow from the negative side of the voltage source, through the circuit, and back to the positive side of the voltage source.
+
+## Electrical Dipoles
+
+### Definition
+
+A dipole is a portion of a circuit between two terminals (dipole).
+
+### Characteristics of a Dipole
+
+It is the graphical representation of the relationship between the current $ i $ (passing through the dipole) and the voltage $ u $ (at its terminals).
+
+import linear from './linear.svg'
+import non_linear from './non-linear.svg'
+
+<div class="supercenter">
+
+| **Linear Dipole**                                      |                      **Non-linear Dipole**                     |
+|--------------------------------------------------------|----------------------------------------------------------------|
+| straight line                                          | non-straight line                                              |
+| <Image src={linear} alt="Linear Dipole" width={200} /> | <Image src={non_linear} alt="Non-linear Dipole" width={200} /> |
+
+</div>
+
+### Generator Dipole vs Receptor Dipole
+
+import dipole_generator from './dipole_generator.svg'
+import dipole_receptor from './dipole_receptor.svg'
+
+<div class="supercenter">
+
+
+| **Generator Dipole** | **Receptor Dipole** |
+|----------------------|----------------------|
+| A dipole is a generator when it supplies energy to the circuit it is connected to. <br/> The current exits from the positive side. <br/> The arrows representing voltage and current are in the **same** direction. | A dipole is a receptor when it consumes energy. <br/> The positive side of the dipole is the one through which the current enters. <br/> The arrows representing voltage and current are in **opposite** directions. |
+| <Image src={dipole_generator} alt="Generator Dipole" width={200} /> | <Image src={dipole_receptor} alt="Receptor Dipole" width={200} /> |
+
+</div>
+
+### **The Four Quadrants of a characteristic**
+
+<div class="supercenter">
+
+| $ U > 0, I < 0 $ <br/> **Generator Dipole** | $ U > 0, I > 0 $ <br/> **Receptor Dipole**   |
+|---------------------------------------------|----------------------------------------------|
+| $ U < 0, I < 0 $ <br/> **Receptor Dipole**  | $ U < 0, I > 0 $ <br/> **Generator Dipole**  |
+
+
+</div>
+
+
+## **Common Passive Dipole**
+
+<details class="details-bordered">
+
+<summary>
+
+### **Resistor**
+
+</summary>
+
+#### **Definition**
+
+A resistor is a passive linear dipole such that the voltage across its terminals is proportional to the current passing through it.
+
+#### **Symbol**
+
+import resistor from './resistor_iec.svg'
+import resistor_ieee from './resistor_ieee.svg'
+
+
+<div class="supercenter">
+
+<Image src={resistor} alt="Resistor IEC" width={200} />
+
+or
+
+<Image src={resistor_ieee} alt="Resistor IEEE" width={200} />
+
+</div>
+
+#### **Resitance value**
+
+import resistor_annotated from './resistor_annotated.svg'
+
+<div class="supercenter">
+  <Image src={resistor_annotated} alt="Inductance" width={300} />
+</div>
+
+
+The resistance unit is the [Ohm](https://en.wikipedia.org/wiki/Ohm) ($ \Omega $). It can also be defined with [Siemens](https://en.wikipedia.org/wiki/Siemens_(unit)) ($ S $) as the reciprocal of the resistance.
+
+```math
+\Omega = \frac{1}{S}
+```
+
+#### **Formulas**
+
+
+```math
+U = R \times I
+```
+
+where:
+- $ U $: voltage in Volts (V)
+- $ I $: current in Amperes (A)
+- $ R $: resistance in Ohms ($ \Omega $)
+
+Or using the conductance:
+
+```math
+I = G \times U
+```
+
+where:
+- $ G = \frac{1}{R} $ is the conductance in Siemens (S)
+
+
+The resistance of a wire-like conductor with a uniform cross-section is given by:
+
+```math
+R = \rho \times \frac{l}{A}
+```
+
+where:
+- $ \rho $: resistivity of the material ($ \Omega.m $)
+- $ l $: length of the wire (m)
+- $ A $: cross-sectional area of the wire (m²)
+
+#### **Series Connection**
+
+import resistor_series from './resistor_series.svg'
+import resistor_series_equivalent from './resistor_series_equivalent.svg'
+
+<div class="supercenter">
+
+<Image src={resistor_series} alt="Resistors in Series" width={500} />
+
+</div>
+
+A circuit composed of multiple resistors connected in series can be reduced to a single equivalent resistance $ R_e $, given by:
+
+```math
+R_e = R_1 + R_2 + \dots + R_n
+```
+
+<div class="supercenter">
+
+<Image src={resistor_series_equivalent} alt="Resistors in Series" width={200} />
+
+</div>
+
+#### **Parallel Connection**
+
+import resistor_parallel from './resistor_parallel.svg'
+import resistor_parallel_equivalent from './resistor_parallel_equivalent.svg'
+
+<div class="supercenter">
+
+<Image src={resistor_parallel} alt="Resistors in Parallel" width={320} />
+
+</div>
+
+A circuit composed of multiple resistors connected in parallel can be reduced to a single equivalent resistance $ R_e $, given by:
+
+```math
+\frac{1}{R_e} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
+```
+
+
+<div class="supercenter">
+
+<Image src={resistor_parallel_equivalent} alt="Resistors in Parallel" width={200} />
+
+</div>
+
+
+<blockquote>
+
+#### **Formula for two resistors in parallel**
+
+For two resistors:
+
+```math
+\frac{1}{R_e} = \frac{1}{R_1} + \frac{1}{R_2}
+```
+
+The formula can be simplified to:
+
+```math
+R_e = \frac{R_1 * R_2}{R_1 + R_2}
+```
+
+<details>
+<summary>Details</summary>
+
+```math
+\frac{1}{R_e} = \frac{1}{R_1} + \frac{1}{R_2}
+```
+
+```math
+\frac{1}{R_e} * (R_1 * R_2) = (\frac{1}{R_1} + \frac{1}{R_2}) * (R_1 * R_2)
+```
+
+```math
+\frac{R_1 * R_2}{R_e} = \frac{R_1 * R_2}{R_1} + \frac{R_1 * R_2}{R_2}
+```
+
+```math
+\frac{R_1 * R_2}{R_e} = R_2 + R_1
+```
+
+```math
+\frac{1}{R_e} = \frac{R_2 + R_1}{R_1 * R_2}
+```
+
+```math
+R_e = \frac{R_1 * R_2}{R_2 + R_1} = \frac{R_1 * R_2}{R_1 + R_2}
+```
+
+</details>
+
+</blockquote>
+
+</details>
+
+<details class="details-bordered">
+<summary>
+
+### Inductance
+
+</summary>
+
+#### **Definition**
+
+An inductance is a passive linear dipole such that the voltage across its terminals is proportional to the derivative of the current passing through it.
+
+#### **Symbol**
+
+import inductance from './inductance.svg'
+
+<div class="supercenter">
+  <Image src={inductance} alt="Inductance" width={200} />
+</div>
+
+
+- Inductance $ L $ is measured in [Henry (H)](https://en.wikipedia.org/wiki/Henry_(unit))
+- Typical range: $ [ 1 \mu \text{H} ; 100 \text{mH} ] $
+
+
+#### **Formula**
+
+import inductance_annotated from './inductance_annotated.svg'
+
+<div class="supercenter">
+  <Image src={inductance_annotated} alt="Inductance" width={300} />
+</div>
+
+Voltage-Current Relationship
+
+```math
+U_{AB}(t) = L \frac{\mathrm{d} i_{AB}(t)}{\mathrm{d} t}
+```
+
+</details>
+
+<details class="details-bordered">
+<summary>
+
+### Capacitor
+
+</summary>
+
+#### **Definition**
+
+A capacitor is a passive linear dipole such that the current passing through it is proportional to the derivative of the voltage across its terminals.
+
+#### **Symbol**
+
+import capacitor from './capacitor.svg'
+
+<div class="supercenter">
+  <Image src={capacitor} alt="Capacitor" width={100} />
+</div>
+
+- Capacitance $ C $ is measured in [Farads (F)](https://en.wikipedia.org/wiki/Farad)
+- Typical range: $ [ 1 \text{pF} ; 100 \mu \text{F} ] $
+
+#### **Formula**
+
+
+- **Charge Relationship:**
+
+```math
+i_{AB} = C \frac{dV_{AB}}{dt}
+```
+
+</details>
+
+
+## Electrical Energy Sources
+
+Electrical energy sources are devices that provide electrical energy to a circuit.
+
+### Ideal energy sources
+
+Ideal energy sources don't have an internal resistance.
+
+import voltage_source_ideal from './voltage_source_ideal.svg'
+import current_source_ideal from './current_source_ideal.svg'
+
+<div class="supercenter">
+
+| **Voltage** | **Current** |
+|-----------|----------|
+|<Image src={voltage_source_ideal} title="Ideal voltage source" alt="Ideal voltage source" width={200}/>| <Image src={current_source_ideal} title="Ideal current source" alt="Ideal current source" width={200}/> |
+
+</div>
+
+### Real energy sources
+
+Real energy sources have an internal resistance.
+
+import voltage_source_real from './voltage_source_real.svg'
+import current_source_real from './current_source_real.svg'
+
+<div class="supercenter">
+
+| **Voltage** | **Current** |
+|-----------|----------|
+| <Image src={voltage_source_real} title="Real voltage source" alt="Real voltage source" width={200}/> | <Image src={current_source_real} title="Real current source" alt="Real current source" width={200}/> |
+
+</div>
+
+## Ground (Reference Potential)
+
+Every point in an electrical circuit has an electric potential relative to a reference voltage \( V \). The ground is considered to have a potential of zero.
+
+### **Symbol**
+
+import ground from './ground.svg'
+
+<div class="supercenter">
+  <Image src={ground} alt="Ground" width={100} />
+</div>
+
+
+
+# Electrical Circuits in Direct Current (DC)
+
+## Uniform Current
+
+The current is the same at all points in the circuit
+
+## Equivalent Electrical Diagram of Passive Elements
+
+import open_circuit from './open_circuit.svg'
+import cable from './cable.svg'
+
+<div class="supercenter">
+
+| **Element**  | **In direct current** |
+|--------------------------------------------------------------------------------|-----------------|
+| Resistor <br/> <Image src={resistor_ieee} alt="Resistor IEEE" width={200} />   | $ U = RI $ <br/>  <Image src={resistor_ieee} alt="Resistor IEEE" width={200} />     |
+| Inductance <br/> <Image src={inductance} alt="Inductance" width={200} />       | A cable <br/> <Image src={cable} alt="Capacitor" width={100} />       |
+| Capacitor  <br/> <Image src={capacitor} alt="Capacitor" width={100} />         | An open circuit <br/> <Image src={open_circuit} alt="Capacitor" width={100} />|
+
+</div>
+
+## Basic Connections
+
+### Voltage Divider
+
+- **Formulas for voltage division:**
+
+```math
+U_2 = E * \frac{R_2}{R_1 + R_2} = \frac{R_2 * E}{R_1 + R_2}
+```
+
+```math
+U_1 = E * \frac{R_1}{R_1 + R_2} = \frac{R_1 * E}{R_1 + R_2}
+```
+
+### Current Divider
+
+- **Formulas for current division:**
+
+```math
+I_2 = \frac{R_1 * I}{R_1 + R_2}
+```
+
+```math
+I_4 = \frac{R_2 * I}{R_1 + R_2}
+```
