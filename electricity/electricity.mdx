@@ -6,6 +6,9 @@ draft: true
 toc: true
 ---
 
+
+import Flexed from "../../src/components/Flexed/Flexed.astro"
+
 export const Style = () => {
   return (
     <style>
@@ -105,13 +108,13 @@ A resistor is a passive linear dipole such that the voltage across its terminals
 
 #### **Symbol**
 
-import resistor from './resistor_iec.svg'
+import resistor_iec from './resistor_iec.svg'
 import resistor_ieee from './resistor_ieee.svg'
 
 
 <div class="supercenter">
 
-<Image src={resistor} alt="Resistor IEC" width={200} />
+<Image src={resistor_iec} alt="Resistor IEC" width={200} />
 
 or
 
@@ -328,11 +331,17 @@ import capacitor from './capacitor.svg'
 
 #### **Formula**
 
+import capacitor_annotated from './capacitor_annotated.svg'
+
+<div class="supercenter">
+  <Image src={capacitor_annotated} alt="Capacitor" width={200} />
+</div>
+
 
 - **Charge Relationship:**
 
 ```math
-i_{AB} = C \frac{dV_{AB}}{dt}
+i_{AB} = C \frac{\mathrm{d} U_{AB}}{\mathrm{d} t}
 ```
 
 </details>
@@ -372,6 +381,15 @@ import current_source_real from './current_source_real.svg'
 
 </div>
 
+Symbol for a battery:
+
+import battery from './battery.svg'
+
+<div class="supercenter">
+  <Image src={battery} alt="Battery" width={200} />
+</div>
+
+
 ## Ground (Reference Potential)
 
 Every point in an electrical circuit has an electric potential relative to a reference voltage \( V \). The ground is considered to have a potential of zero.
@@ -388,8 +406,6 @@ import ground from './ground.svg'
 
 # Electrical Circuits in Direct Current (DC)
 
-## Uniform Current
-
 The current is the same at all points in the circuit
 
 ## Equivalent Electrical Diagram of Passive Elements
@@ -401,34 +417,58 @@ import cable from './cable.svg'
 
 | **Element**  | **In direct current** |
 |--------------------------------------------------------------------------------|-----------------|
-| Resistor <br/> <Image src={resistor_ieee} alt="Resistor IEEE" width={200} />   | $ U = RI $ <br/>  <Image src={resistor_ieee} alt="Resistor IEEE" width={200} />     |
-| Inductance <br/> <Image src={inductance} alt="Inductance" width={200} />       | A cable <br/> <Image src={cable} alt="Capacitor" width={100} />       |
-| Capacitor  <br/> <Image src={capacitor} alt="Capacitor" width={100} />         | An open circuit <br/> <Image src={open_circuit} alt="Capacitor" width={100} />|
+| Resistor <br/> <Image src={resistor_iec} alt="Resistor IEEE" width={200} />   | $ U = RI $ <br/>  <Image src={resistor_iec} alt="Resistor IEEE" width={200} />     |
+| Inductance <br/> <Image src={inductance} alt="Inductance" width={200} />       | a cable <br/> <Image src={cable} alt="Capacitor" width={100} />       |
+| Capacitor  <br/> <Image src={capacitor} alt="Capacitor" width={100} />         | an open circuit <br/> <Image src={open_circuit} alt="Capacitor" width={100} />|
 
 </div>
 
-## Basic Connections
+## Basic circuits
 
 ### Voltage Divider
 
-- **Formulas for voltage division:**
+A voltage divider is a circuit that divides the input voltage into two or more parts.
+
+import voltage_divider from './voltage_divider.svg'
+
+<div class="supercenter">
+  <Image src={voltage_divider} alt="Voltage Divider" width={350} />
+</div>
+
+**Formulas for voltage division:**
+
+<Flexed>
 
 ```math
-U_2 = E * \frac{R_2}{R_1 + R_2} = \frac{R_2 * E}{R_1 + R_2}
+U_{\textcolor{blue}{2}} = E * \frac{R_{\textcolor{blue}{2}}}{R_1 + R_2} = \frac{R_{\textcolor{blue}{2}} * E}{R_1 + R_2}
 ```
 
 ```math
-U_1 = E * \frac{R_1}{R_1 + R_2} = \frac{R_1 * E}{R_1 + R_2}
+U_{\textcolor{blue}{1}} = E * \frac{R_{\textcolor{blue}{1}}}{R_1 + R_2} = \frac{R_{\textcolor{blue}{1}} * E}{R_1 + R_2}
 ```
+
+</Flexed>
 
 ### Current Divider
 
-- **Formulas for current division:**
+A current divider is a circuit that divides the input current into two or more parts.
+
+import current_divider from './current_divider.svg'
+
+<div class="supercenter">
+  <Image src={current_divider} alt="Current Divider" width={350} />
+</div>
+
+**Formulas for current division:**
+
+<Flexed>
 
 ```math
-I_2 = \frac{R_1 * I}{R_1 + R_2}
+I_{\textcolor{red}{2}} = \frac{R_{\textcolor{red}{1}} * I}{R_1 + R_2}
 ```
 
 ```math
-I_4 = \frac{R_2 * I}{R_1 + R_2}
+I_{\textcolor{red}{1}} = \frac{R_{\textcolor{red}{2}} * I}{R_1 + R_2}
 ```
+
+</Flexed>

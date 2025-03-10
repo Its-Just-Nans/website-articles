@@ -17,6 +17,6 @@
     <path d="m20,50h90" stroke="green" />
     <path d="m27.5 45.5-7.5 4.5 7.5 4.5" fill="green" stroke="green" />
     <text x="60" y="45" font-size="10" fill="green" stroke="green" stroke-width="0.25">U</text>
-    <text x="66" y="46" font-size="5" fill="green" stroke="green" stroke-width="0.25">A</text>
-    <text x="70" y="46" font-size="5" fill="green" stroke="green" stroke-width="0.25">B</text>
+    <text x="68" y="46" font-size="5" fill="green" stroke="green" stroke-width="0.25">A</text>
+    <text x="72" y="46" font-size="5" fill="green" stroke="green" stroke-width="0.25">B</text>
 </svg>
