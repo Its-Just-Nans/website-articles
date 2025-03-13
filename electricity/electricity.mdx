@@ -43,6 +43,44 @@ Electricity is the set of physical phenomena associated with the presence and fl
 
 An electric circuit is a closed path in which electrons from a voltage or current source flow. The electrons flow from the negative side of the voltage source, through the circuit, and back to the positive side of the voltage source.
 
+A node is a point in the circuit where three or more circuit elements are connected.
+
+import node_law from './node_law.svg'
+
+<div class="supercenter">
+  <Image src={node_law} alt="Node Law" width={200} />
+</div>
+
+```math
+I_1 = I_2 + I_3
+```
+
+## Measurement
+
+### **Voltage**
+
+Voltage is the difference in electric potential between two points. It is the force that pushes the electric current through a circuit. It is measured in Volts (V).
+
+We use the volmeter in **parallel** to measure the voltage.
+
+import voltage_measurement from './voltage_measurement.svg'
+
+<div class="supercenter">
+  <Image src={voltage_measurement} alt="Voltage Measurement" width={400} />
+</div>
+
+### **Current**
+
+Current is the flow of electric charge. It is measured in Amperes (A).
+
+We use the ammeter (ampere meter) in **series** to measure the current.
+
+import current_measurement from './current_measurement.svg'
+
+<div class="supercenter">
+  <Image src={current_measurement} alt="Current Measurement" width={400} />
+</div>
+
 ## Electrical Dipoles
 
 ### Definition
@@ -54,7 +92,7 @@ A dipole is a portion of a circuit between two terminals (dipole).
 It is the graphical representation of the relationship between the current $ i $ (passing through the dipole) and the voltage $ u $ (at its terminals).
 
 import linear from './linear.svg'
-import non_linear from './non-linear.svg'
+import non_linear from './non_linear.svg'
 
 <div class="supercenter">
 
@@ -114,11 +152,21 @@ import resistor_ieee from './resistor_ieee.svg'
 
 <div class="supercenter">
 
-<Image src={resistor_iec} alt="Resistor IEC" width={200} />
+<Flexed>
+<div>
+<Image src={resistor_iec} title="Resistor IEC" alt="Resistor IEC" width={200} />
+IEC symbol
+</div>
 
+<div>
 or
+</div>
 
-<Image src={resistor_ieee} alt="Resistor IEEE" width={200} />
+<div>
+<Image src={resistor_ieee} title="Resistor IEEE" alt="Resistor IEEE" width={200} />
+IEEE symbol
+</div>
+</Flexed>
 
 </div>
 
@@ -472,3 +520,130 @@ I_{\textcolor{red}{1}} = \frac{R_{\textcolor{red}{2}} * I}{R_1 + R_2}
 ```
 
 </Flexed>
+
+# Methods for Analyzing Linear Circuits
+
+## Definition
+
+- A **branch** consists of one or more elements connected in series and carrying the same current.
+- A **linear resistor** obeys Ohm's law: the voltage across it is proportional to the current through it.
+
+```math
+U = R I
+```
+
+- A **branch** consists of a circuit element between two nodes.
+- A **node** is the junction of at least three conductors.
+- A **mesh** is a set of branches forming a closed circuit.
+- A **loop** in a circuit consists of a closed path without passing through the same mesh twice.
+
+  *(See Figure 2, Step 2)*
+
+- In a linear circuit, the values of sources and elements are assumed to be known. The goal is to calculate voltages and currents in the circuit.
+
+## Kirchhoff's Laws
+
+### Node Law (KCL - Kirchhoff's Current Law)
+
+- The sum of currents at a node is zero.
+
+### Mesh Law (KVL - Kirchhoff's Voltage Law)
+
+- The sum of voltage drops around a closed mesh is zero.
+
+```math
+\sum_k U_k = 0
+```
+
+- Example equation:
+
+```math
+E_1 + R_1 I_1 - R_2 I_2 - R_3 I_3 - E_3 = 0
+```
+
+### Writing Equations Using Kirchhoff's Laws
+
+- If a circuit has **n** nodes and **b** branches:
+  - There are **(n-1)** independent node equations.
+  - There are **(b - (n-1))** independent mesh equations.
+
+  *(Example: See Figure 3, Step 2)*
+
+## Node Potential Method
+
+**Objective:** TP n°5 (unspecified)
+
+## Superposition Theorem
+
+### Statement
+
+A linear circuit containing several sources obeys the principle of superposition.
+The current or voltage produced by the sources acts independently.
+
+#### Rules for Source Elimination
+
+(Figure 4)
+
+#### Example
+
+(Figure 5)
+
+```math
+I = I_{\alpha} + I_{\beta}
+```
+
+<Flexed>
+<div>
+
+Calculation of $ I_\alpha $ (Figure 6)
+
+```math
+I_{\alpha} = \frac{R_2}{R_1 + R_2} \times I_1
+```
+
+</div>
+<div>
+
+Calculation of $ I_\beta $
+
+```math
+I_{\beta} = \frac{R_2}{R_1 + R_2} \times I_2
+```
+
+</div>
+
+</Flexed>
+
+Conclusion for $ I $
+
+```math
+I = I_{\alpha} + I_{\beta} = \frac{R_2}{R_1 + R_2} \times (I_1 + I_2)
+```
+
+## Thévenin's Theorem
+
+### Objective
+
+(Figure 7)
+
+### Statement
+
+Any linear circuit located between points A and B can be modeled by an equivalent generator $ (E_{th}, R_{th}) $, where:
+- $ E_{th} $ is the open-circuit voltage between A and B
+- $ R_{th} $ is the equivalent resistance seen between A and B when the sources are deactivated
+
+### Example
+
+(Figure 8 → Figure 9)
+
+
+# Links to Resources
+
+- https://falstad.com/circuit/ - Online circuit simulator
+- https://www.allaboutcircuits.com/ - All About Circuits
+- https://digital.r2.enst.fr/ - Digital Electronics Course simulator
+
+
+- https://www.youtube.com/playlist?list=PLjS13O8ZcTgYIn2cPTT-uSOF8G0CBrtrZ - Des atomes et l'électricité
+- https://www.youtube.com/playlist?list=PLjS13O8ZcTgZpoGv5QAMoHt4be6gIcjJU - Voyage en électricité
+- https://www.youtube.com/playlist?list=PLjS13O8ZcTgY_7sK64W6wDdfzdZvVshiE - Petit voyage en électricité
