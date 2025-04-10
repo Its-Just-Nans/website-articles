@@ -5,7 +5,7 @@
     <path d="m58 70h14m0-6h34v13h-34zm34 6h14" />
     <text x="61" y="80" font-size="10" fill="black" stroke="black" stroke-width="0.25">R</text>
     <text x="68" y="82" font-size="5" fill="black" stroke="black" stroke-width="0.35">1</text>
-    <path d="m65 53 -7.5 4.5 7.5 4.5zm-7.5 4.5h55" fill="green" stroke="green" />
+    <path d="m110 63 7.5-4.5-7.5-4.5zm7.5-4.5h-55" fill="green" stroke="green" />
     <text x="84" y="53" font-size="10" fill="green" stroke="green" stroke-width="0.25">U</text>
     <text x="92" y="54" font-size="5" fill="green" stroke="green" stroke-width="0.35">1</text>
 
