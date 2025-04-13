@@ -6,7 +6,7 @@ description: rust patterns to remember
 
 Disclaimer: This is just a list of patterns that I found useful. It is not exhaustive and it is not a best practice list.
 
-## Builder pattern but with a single struct
+## Builder pattern but with a single struct - Builder Lite
 
 https://rust-unofficial.github.io/patterns/patterns/creational/builder.html
 
@@ -36,6 +36,8 @@ fn main() {
     let foo = Foo::new().with_bar("Y".to_string());
 }
 ```
+
+> This is commonly called the Builder Lite - https://matklad.github.io/2022/05/29/builder-lite.html
 
 ## Question mark operator
 
