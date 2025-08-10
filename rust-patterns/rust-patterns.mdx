@@ -81,3 +81,26 @@ fn do_something() -> Result<Response, MyCustomError> {
     Ok(smth)
 }
 ```
+
+## AsRef for `&str` arg
+
+Replace
+
+```rust
+pub fn my_func(text: &str) {
+    println!("{}", text);
+}
+
+pub fn my_func_with_string(text: String) {
+    println!("{}", &text);
+}
+```
+
+with
+
+```rust
+pub fn my_func<S: AsRef<str>>(text: S) {
+    let text = test.as_ref();
+    println!("{}", &text);
+}
+```
