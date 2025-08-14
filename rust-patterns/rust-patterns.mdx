@@ -99,8 +99,8 @@ pub fn my_func_with_string(text: String) {
 with
 
 ```rust
-pub fn my_func<S: AsRef<str>>(text: S) {
-    let text = test.as_ref();
+pub fn my_func<S: AsRef<str>>(my_str: S) {
+    let text = my_str.as_ref();
     println!("{}", text);
 }
 ```

@@ -1,0 +1,138 @@
+---
+title: My journey to creating a CV
+description: Achieving sub second CV generation (it's useless anyway)
+date: 2025-08-12
+---
+
+
+export const Helper = ({ summary, children }) => {
+    return (
+        <details class="helper">
+            <style>
+                {`
+                .helper{
+                    background-color: lightblue;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                `}
+            </style>
+            <summary>
+                {summary}
+            </summary>
+            <br />
+            {children}
+        </details>
+    )
+}
+
+export const DateTitle = ({ date, children }) => {
+    return (<span class="dateTitle">
+        <style>{`
+            .dateTitle {
+                display: flex;
+                justify-content: space-between;
+            }`}
+        </style>
+        <span>
+            {children}
+        </span>
+        <span>
+            {date}
+        </span>
+    </span>
+    )
+}
+
+## The beginning
+
+The journey start in High School, where I needed to create a CV for my first job application. I wasn't really into computers back then, so I just used the classic [LibreOffice Writer](https://www.libreoffice.org/) to create a simple CV. It was a tedious process, and I had to manually format everything. Painfull, but managable since there was not so much into it.
+
+LibreOffice Writer is all fun until you want something serious.
+
+## <DateTitle date="2022/01"> $\LaTeX$ superiority</DateTitle>
+
+Then in Engineering School, I needed again a CV for an internship. This time, I decided to use $\LaTeX$, which was a bit more complex but allowed for better formatting and structure. $\LaTeX$ allows comes with [the simplicity of a single text file](https://stephango.com/file-over-app).
+
+In the end, my CV was a single `.tex` file in a GIT repository hosted on [Github](https://github.com/).
+
+Wait...you said on Github? What not building it with GitHub Actions?
+
+So I did. I created a simple workflow that would compile my `.tex` file into a PDF every time I pushed changes to the repository. This was great until I encountered my next ~problem~ challenge.
+
+Here is a little summary of the superiority of $\LaTeX$:
+
+Pros of $\LaTeX$:
+- better formatting and structure
+- very powerful for complex documents
+- very good for mathematical equations
+- a cool command to show the logo `\LaTeX`: $\LaTeX$
+
+Cons of $\LaTeX$:
+- Big download size
+    ```
+    $ apt install texlive-full
+    Installing:
+    texlive-full
+    ...
+    Summary:
+    Upgrading: 0, Installing: 797, Removing: 0, Not Upgrading: 0
+    Download size: 4820 MB
+    Space needed: 9183 MB
+    ```
+- Could be complex for beginners (pixel perfect layout is tricky)
+- Slow
+
+
+## <DateTitle date="2024/02">Lua machinery</DateTitle>
+
+Then I faced a new ~problem~ challenge: I wanted to have two CVs, one in English and one in French, and with the same layout. I decided to change paradigm and use two files: one for the content and one for the layout.
+
+The content file was in JSON format, and the layout file was in $\LaTeX$.
+
+<Helper summary="What JSON is doing here?">
+Yes **JSON**, because I believe in the [file over app](https://stephango.com/file-over-app) philosophy. And at night, I dream of a json per contact like the [RFC9553](https://www.rfc-editor.org/rfc/rfc9553).
+
+Wait... you like RFC9553? You should definitely check out https://crates.io/crates/jscontact
+
+
+(yes indeed this advertisement was unwanted but/and free)
+</Helper>
+
+This is where I used the real power of `lualatex`, and used the [Lua](https://www.lua.org/) integration to load JSON into the document. I could now generate both CVs from the same content file, just by changing one parameter, the `lang`.
+
+## <DateTitle date="2024/02">Lua sorcery</DateTitle>
+
+This was a great improvement, but I didn't really liked to have too much mix of Lua and $\LaTeX$ in the same file (circa 2024-11). So I created a separate file Lua file to handle the JSON loading and parsing, and used it in my $\LaTeX$ file. But I still wasn't satisfied with the result. I had three files: one for the content, one for the layout, and one for the Lua code. This is where I decided to change [again](https://github.com/Its-Just-Nans/curriculum-vitae/commit/93fa0836159265aa59c687693cbb29d182babe1d). So the attentive reader will think about a luafile that create a `.tex` file from the JSON content, and then compile it with `lualatex`. But this is too easy, too simple and as an idiot, I wanted something more complex.
+
+```
+"An idiot admires complexity, a genius admires simplicity"
+- Terry A. Davis (RIP child of God)
+```
+
+So naturally, I created a Lua file that generates a `.tex` that contains calls to the Lua code, then calls `lualatex` to compile it. Yes, a self-invoking Lua script that generates a `.tex` file and compiles it. (you're allowed the read the sentence again to see the ~complexity~ stupidity of this nonsense)
+
+
+In the end, this method was quite fast and was able to generate both CVs with a single command. But the edition and re-rendering was still quite slow, as I had to wait for `lualatex` to compile the document every time I made a change.
+
+I ended up pushing this fraudulent script into [luarocks](https://luarocks.org/modules/its-just-nans/curriculum_vitae) just incase someone wants to use it :nerd_face:. The lua file is a lib and a script at the same time.
+
+The repository is available here: https://github.com/Its-Just-Nans/curriculum-vitae
+
+Here is the timing for creating two CVs with this method:
+
+```
+$ time lua curriculum_vitae.lua
+real    0m3,297s
+user    0m2,907s
+sys     0m0,389s
+```
+
+## <DateTitle date="2025/06">Typst supremacy</DateTitle>
+
+Then after playing around with [Typst](https://typst.app/), you cannot resist the temptation to rewrite everything. Typst is a modern document preparation system that is much faster than $\LaTeX$ and has a simpler syntax.
+
+It also has built-in support for JSON (and so much more), which means I can load my content file directly into the document. And Typst supports programming inside the document, so I can do my layout from the JSON.
+
+Also Typst use incremental compilation, which means that it only recompiles the parts of the document that have changed, making it much faster than $\LaTeX$ when editing it.
+
