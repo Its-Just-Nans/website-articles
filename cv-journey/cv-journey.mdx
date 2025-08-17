@@ -144,3 +144,18 @@ Typst is a modern typesetting system much faster than $\LaTeX$ and with a cleane
 
 It also supports incremental compilation (only recompiling the parts that change) making it far faster than $\LaTeX$ during edits.
 
+
+Here are the timings for generating two CVs with this method:
+```
+$ time typst compile cv.typ --input CV_LANG=fr cv_fr.pdf
+real    0m0,509s
+user    0m0,331s
+sys     0m0,185s
+
+$ time typst compile cv.typ --input CV_LANG=en cv_en.pdf
+real    0m0,442s
+user    0m0,265s
+sys     0m0,182s
+```
+
+The time difference is caused by the French CV including a profile picture.
