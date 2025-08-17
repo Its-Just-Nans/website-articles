@@ -105,7 +105,7 @@ This is where  the real power of `lualatex` came in. Using Lua’s integration, 
 This was a big improvement, but I didn’t like having too much Lua mixed directly into my $\LaTeX$ file. So I split the Lua code into a dedicated `.lua` file, which the `.tex` file could call. This left me with three files:
 1. The JSON content
 2. The $\LaTeX$ layout
-3. The Lua parser
+3. The Lua functions
 
 Naturally, I decided to change [again](https://github.com/Its-Just-Nans/curriculum-vitae/commit/93fa0836159265aa59c687693cbb29d182babe1d).
 
@@ -145,7 +145,7 @@ It also supports incremental compilation (only recompiling the parts that change
 
 The repository is available here: https://github.com/Its-Just-Nans/typst-json-curriculum-vitae
 
-Usage would because
+Usage would be something like this:
 
 ```typ
 #import "@preview/json-curriculum-vitae:0.0.1": show_cv
